@@ -59,16 +59,29 @@ toggleCameraButton.addEventListener('click', () => {
     openCamera();
 });
 
+// Função para converter dataURI para Blob
+function dataURItoBlob(dataURI) {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+}
+
 // Função para enviar a foto para o servidor
 function sendPhotoToServer(imageData) {
-    fetch('https://192.168.1.26:teste/', {
+    const formData = new FormData();
+    formData.append('foto_file', dataURItoBlob(imageData), 'photo.png');
+
+    fetch('http://192.168.1.26:8000/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'multipart/form-data',
             'accept': 'application/json'
-
         },
-        body: JSON.stringify({ image: imageData })
+        body: formData
     })
     .then(response => response.json())
     .then(data => {
