@@ -8,7 +8,9 @@ let stream;
 // Função para abrir a câmera
 openCameraButton.addEventListener('click', async () => {
     try {
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: 'user' } // 'user' para câmera frontal
+        });
         video.srcObject = stream;
         openCameraButton.style.display = 'none';
         takePhotoButton.style.display = 'block';
