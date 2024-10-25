@@ -8,7 +8,7 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #000;
-    background-image: url('img/halloween.jpeg'); /* Substitua com uma URL válida */
+    background-image: url('img/halloween.jpeg');
     background-size: 100px 100px;
     background-repeat: repeat;
     color: #fff;
@@ -29,9 +29,10 @@ h1 {
 }
 
 video {
+    display: none;
     width: 100%;
     max-width: 300px;
-    margin-top: 20px;
+    margin: 20px auto 0 auto;
     border: 2px solid #ff6347;
     border-radius: 10px;
 }

@@ -4,7 +4,7 @@ const toggleCameraButton = document.getElementById('toggleCamera');
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 let stream;
-let isUsingFrontCamera = false; // Variável para controlar o lado da câmera
+let isUsingFrontCamera = false;
 
 // Função para abrir a câmera
 async function openCamera() {
@@ -13,9 +13,10 @@ async function openCamera() {
             video: { facingMode: isUsingFrontCamera ? 'user' : 'environment' }
         });
         video.srcObject = stream;
+        video.style.display = 'block';
         openCameraButton.style.display = 'none';
         takePhotoButton.style.display = 'block';
-        toggleCameraButton.style.display = 'block'; // Exibe o botão de alternar câmera
+        toggleCameraButton.style.display = 'block';
     } catch (error) {
         console.error('Erro ao acessar a câmera: ', error);
     }
@@ -42,7 +43,7 @@ takePhotoButton.addEventListener('click', () => {
     video.srcObject = null;
     takePhotoButton.style.display = 'none';
     openCameraButton.style.display = 'block';
-    toggleCameraButton.style.display = 'none'; // Esconde o botão de alternar câmera
+    toggleCameraButton.style.display = 'none';
 });
 
 // Função para alternar a câmera
