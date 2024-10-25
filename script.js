@@ -76,7 +76,7 @@ function sendPhotoToServer(imageData) {
     const formData = new FormData();
     formData.append('foto_file', dataURItoBlob(imageData), 'photo.png');
 
-    fetch('http://192.168.1.26:8000/', {
+    fetch('https://192.168.1.26:8000/', {
         method: 'POST',
         headers: {
             'Content-Type': 'multipart/form-data',
