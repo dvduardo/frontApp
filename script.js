@@ -1,23 +1,28 @@
 const openCameraButton = document.getElementById('openCamera');
 const takePhotoButton = document.getElementById('takePhoto');
+const toggleCameraButton = document.getElementById('toggleCamera');
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
-
 let stream;
+let isUsingFrontCamera = false; // Variável para controlar o lado da câmera
 
 // Função para abrir a câmera
-openCameraButton.addEventListener('click', async () => {
+async function openCamera() {
     try {
         stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: 'environment' } // 'user' para câmera traseira
+            video: { facingMode: isUsingFrontCamera ? 'user' : 'environment' }
         });
         video.srcObject = stream;
         openCameraButton.style.display = 'none';
         takePhotoButton.style.display = 'block';
+        toggleCameraButton.style.display = 'block'; // Exibe o botão de alternar câmera
     } catch (error) {
         console.error('Erro ao acessar a câmera: ', error);
     }
-});
+}
+
+// Evento para abrir a câmera
+openCameraButton.addEventListener('click', openCamera);
 
 // Função para tirar a foto
 takePhotoButton.addEventListener('click', () => {
@@ -37,6 +42,19 @@ takePhotoButton.addEventListener('click', () => {
     video.srcObject = null;
     takePhotoButton.style.display = 'none';
     openCameraButton.style.display = 'block';
+    toggleCameraButton.style.display = 'none'; // Esconde o botão de alternar câmera
+});
+
+// Função para alternar a câmera
+toggleCameraButton.addEventListener('click', () => {
+    // Alterna entre a câmera frontal e traseira
+    isUsingFrontCamera = !isUsingFrontCamera;
+
+    // Parar o stream atual
+    stream.getTracks().forEach(track => track.stop());
+
+    // Reabrir a câmera com o novo lado
+    openCamera();
 });
 
 // Função para enviar a foto para o servidor
