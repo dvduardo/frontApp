@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotos do Evento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Fotos do Evento</h1>
+        <div id="photosContainer"></div>
+        <div id="errorMessage" style="display: none; text-align: center; color: red;">Ou não temos foto ou tem erro aqui, desculpa</div>
+    </div>
+    <script>
+        // Função para buscar e exibir as fotos
+        async function fetchPhotos() {
+            try {
+                const response = await fetch('http://192.168.1.26:8000/photos'); // Substitua pela URL correta do seu servidor
+                const photos = await response.json();
+                const photosContainer = document.getElementById('photosContainer');
+                const errorMessage = document.getElementById('errorMessage');
+
+                if (photos.length === 0) {
+                    errorMessage.style.display = 'block';
+                } else {
+                    photos.forEach(photo => {
+                        const img = document.createElement('img');
+                        img.src = photo.url; // Supondo que a resposta JSON contém URLs das fotos
+                        img.alt = 'Foto do Evento';
+                        img.style.width = '200px'; // Ajuste o tamanho conforme necessário
+                        img.style.margin = '10px';
+                        photosContainer.appendChild(img);
+                    });
+                }
+            } catch (error) {
+                console.error('Erro ao buscar as fotos:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+
+        // Chama a função para buscar as fotos quando a página carrega
+        window.onload = fetchPhotos;
+    </script>
+</body>
+</html>
