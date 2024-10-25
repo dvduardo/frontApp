@@ -28,6 +28,12 @@ h1 {
     color: #ff6347;
 }
 
+h2 {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
 video {
     display: none;
     width: 100%;
