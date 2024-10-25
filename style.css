@@ -1,21 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Creepster', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: #000;
+    background-image: url('img/halloween.jpeg'); /* Substitua com uma URL válida */
+    background-size: 100px 100px;
+    background-repeat: repeat;
+    color: #fff;
 }
 
 .container {
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ff6347;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #ff6347;
 }
 
 video {
     width: 100%;
     max-width: 300px;
     margin-top: 20px;
+    border: 2px solid #ff6347;
+    border-radius: 10px;
 }
 
 button {
@@ -23,4 +41,16 @@ button {
     font-size: 16px;
     margin-top: 20px;
     cursor: pointer;
+    background-color: #ff6347;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    transition: background-color 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button:hover {
+    background-color: #e5533d;
 }

@@ -59,10 +59,12 @@ toggleCameraButton.addEventListener('click', () => {
 
 // Função para enviar a foto para o servidor
 function sendPhotoToServer(imageData) {
-    fetch('https://seu-servidor.com/upload', {
+    fetch('https://192.168.1.26:teste/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'multipart/form-data',
+            'accept': 'application/json'
+
         },
         body: JSON.stringify({ image: imageData })
     })
