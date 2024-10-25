@@ -42,9 +42,11 @@ takePhotoButton.addEventListener('click', () => {
     // Parar o stream da câmera
     stream.getTracks().forEach(track => track.stop());
     video.srcObject = null;
+    video.style.display = 'none';
     takePhotoButton.style.display = 'none';
     openCameraButton.style.display = 'block';
     toggleCameraButton.style.display = 'none';
+    viewPhotos.style.display = 'block';
 });
 
 // Função para alternar a câmera
