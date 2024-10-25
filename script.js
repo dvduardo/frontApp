@@ -17,6 +17,7 @@ async function openCamera() {
         openCameraButton.style.display = 'none';
         takePhotoButton.style.display = 'block';
         toggleCameraButton.style.display = 'block';
+        welcomeMessage.style.display = 'none';
     } catch (error) {
         console.error('Erro ao acessar a câmera: ', error);
     }
