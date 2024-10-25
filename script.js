@@ -9,7 +9,7 @@ let stream;
 openCameraButton.addEventListener('click', async () => {
     try {
         stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: 'user' } // 'user' para câmera frontal
+            video: { facingMode: 'environment' } // 'user' para câmera traseira
         });
         video.srcObject = stream;
         openCameraButton.style.display = 'none';
