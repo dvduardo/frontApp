@@ -26,6 +26,7 @@ h1 {
     font-size: 3em;
     margin-bottom: 20px;
     color: #ff6347;
+    text-shadow: 2px 2px 5px #000;
 }
 
 h2 {
@@ -56,8 +57,92 @@ button {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transition: all 0.3s ease;
 }
 
 button:hover {
     background-color: #e5533d;
+}
+
+button:hover {
+    background-color: #000;
+    color: #ff7518;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 117, 24, 0.8), 0 0 30px rgba(255, 117, 24, 0.6);
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+#openCamera, #toggleCamera, #viewPhotos, #takePhoto {
+    position: relative;
+    overflow: hidden;
+}
+
+#openCamera::before, #toggleCamera::before, #viewPhotos::before, #takePhoto::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, transparent 20%, rgba(255, 117, 24, 0.5) 20%, rgba(255, 117, 24, 0.5) 80%, transparent 80%);
+    animation: pulse 2s infinite;
+    opacity: 0.5;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+}#openCamera, #toggleCamera, #viewPhotos, #takePhoto {
+    position: relative;
+    overflow: hidden;
+}
+
+#openCamera::before, #toggleCamera::before, #viewPhotos::before, #takePhoto::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, transparent 30%, rgba(255, 24, 24, 0.5) 20%, rgba(14, 0, 0, 0.5) 80%, transparent 80%);
+    animation: pulse 1.5s infinite;
+    opacity: 0.5;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+}
+
+.container {
+    margin-top: 50px;
+}
+
+video {
+    border: 5px solid #ff7518;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 117, 24, 0.8);
 }
