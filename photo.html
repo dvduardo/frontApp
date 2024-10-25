@@ -5,13 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fotos do Evento</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos para o container das fotos */
+        #photosContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Estilos para as imagens */
+        #photosContainer img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ff6347;
+        }
+
+        /* Estilos para a mensagem de erro */
+        #errorMessage {
+            display: none;
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Fotos do Evento</h1>
-        <div id="photosContainer"></div>
-        <div id="errorMessage" style="display: none; text-align: center; color: red;">Ou não temos foto ou tem erro aqui, desculpa</div>
-    </div>
+    
+    <div id="photosContainer"></div>
+    <div id="errorMessage">Erro ao carregar as fotos.</div>
+
     <script>
         // Função para buscar e exibir as fotos
         async function fetchPhotos() {
@@ -28,12 +56,9 @@
                 } else {
                     // Para cada UUID, buscar a foto em qualidade total
                     for (const uuid of uuids) {
-
                         const img = document.createElement('img');
-                        img.src =`https://mole-star-feline.ngrok-free.app/${uuid}`;
+                        img.src = `https://mole-star-feline.ngrok-free.app/${uuid}`;
                         img.alt = 'Foto do Evento';
-                        img.style.width = '200px';
-                        img.style.margin = '10px';
                         photosContainer.appendChild(img);
                     }
                 }
