@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fotos do Evento</title>
-    <link rel="stylesheet" href="style.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+        body {
+            font-family: 'Creepster', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-color: #000;
+            background-image: url('img/halloween.jpeg');
+            background-size: 100px 100px;
+            background-repeat: repeat;
+            color: #fff;
+        }
         /* Estilos para o container das fotos */
         #photosContainer {
             display: flex;
@@ -16,9 +28,8 @@
 
         /* Estilos para as imagens */
         #photosContainer img {
-            max-width: 100%;
-            height: auto;
-            margin: 10px;
+            max-width: 80%;
+            margin: 0.5rem;
             text-align: center;
             background-color: rgba(0, 0, 0, 0.8);
             padding: 20px;
@@ -33,11 +44,22 @@
             text-align: center;
             margin-top: 20px;
         }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #ff6347;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ff6347;
+        }
     </style>
 </head>
 <body>
     
-    <div id="photosContainer"></div>
+    <div id="photosContainer">
+        <h1>Fotos do Evento</h1>
+    </div>
     <div id="errorMessage">Erro ao carregar as fotos.</div>
 
     <script>
