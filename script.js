@@ -79,7 +79,6 @@ function sendPhotoToServer(imageData) {
     fetch('https://192.168.1.26:8000/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'multipart/form-data',
             'accept': 'application/json'
         },
         body: formData
