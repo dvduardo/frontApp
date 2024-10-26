@@ -5,10 +5,13 @@ const toggleCameraButton = document.getElementById('toggle-camera');
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const camera = document.getElementById('camera');
+const preview = document.getElementById('preview');
+
+const previewBack = document.getElementById('preview-back');
+const cameraBack = document.getElementById('camera-back');
 let stream;
 let isUsingFrontCamera = false;
 
-// Função para abrir a câmera
 async function openCamera() {
     try {
         stream = await navigator.mediaDevices.getUserMedia({
@@ -20,6 +23,14 @@ async function openCamera() {
         console.error('Erro ao acessar a câmera: ', error);
     }
 }
+
+function closeAll() {
+    camera.style.display = 'none';
+    preview.style.display = 'none';
+}
+
+previewBack.addEventListener('click', closeAll);
+cameraBack.addEventListener('click', closeAll);
 
 viewPhotosButton.addEventListener('click', () => window.location.href = './photo.html');
 openCameraButton.addEventListener('click', openCamera);
@@ -40,7 +51,7 @@ takePhotoButton.addEventListener('click', () => {
     stream.getTracks().forEach(track => track.stop());
     video.srcObject = null;
     camera.style.display = 'none';
-    canvas.style.display = 'block';
+    preview.style.display = 'block';
 });
 
 // Função para alternar a câmera
