@@ -181,6 +181,7 @@ body {
     border-radius: 0.25rem;
     box-shadow: 0 0.2rem 0.25rem 0 rgba(0, 0, 0, 0.4);
     z-index: 3;
+    display: none;
 }
 
 .preview__snackbar .button {

@@ -12,6 +12,7 @@ const previewBack = document.getElementById('preview-back');
 const cameraBack = document.getElementById('camera-back');
 const galleryBack = document.getElementById('gallery-back');
 const previewClose = document.getElementById('preview-close');
+const sendSuccess = document.getElementById('send-success');
 let stream;
 let isUsingFrontCamera = false;
 
@@ -48,6 +49,7 @@ function closeAll() {
     camera.style.display = 'none';
     preview.style.display = 'none';
     gallery.style.display = 'none';
+    sendSuccess.style.display = 'none';
 }
 
 previewBack.addEventListener('click', closeAll);
@@ -113,9 +115,9 @@ function sendPhotoToServer(imageData) {
         },
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Foto enviada com sucesso:', data);
+    .then(() => {
+        sendSuccess.style.display = 'block';
+        console.log('Foto enviada com sucesso');
     })
     .catch(error => {
         console.error('Erro ao enviar a foto:', error);
