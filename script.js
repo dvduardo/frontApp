@@ -1,9 +1,10 @@
 const openCameraButton = document.getElementById('open-camera');
 const viewPhotosButton = document.getElementById('view-photos');
-const takePhotoButton = document.getElementById('takePhoto');
-const toggleCameraButton = document.getElementById('toggleCamera');
+const takePhotoButton = document.getElementById('take-photo');
+const toggleCameraButton = document.getElementById('toggle-camera');
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
+const camera = document.getElementById('camera');
 let stream;
 let isUsingFrontCamera = false;
 
@@ -14,22 +15,15 @@ async function openCamera() {
             video: { facingMode: isUsingFrontCamera ? 'user' : 'environment' }
         });
         video.srcObject = stream;
-        video.style.display = 'block';
-        openCameraButton.style.display = 'none';
-        takePhotoButton.style.display = 'block';
-        toggleCameraButton.style.display = 'block';
-        welcomeMessage.style.display = 'none';
+        camera.style.display = 'block';
     } catch (error) {
         console.error('Erro ao acessar a câmera: ', error);
     }
 }
 
 viewPhotosButton.addEventListener('click', () => window.location.href = './photo.html');
-
-// Evento para abrir a câmera
 openCameraButton.addEventListener('click', openCamera);
 
-// Função para tirar a foto
 takePhotoButton.addEventListener('click', () => {
     const context = canvas.getContext('2d');
     canvas.width = video.videoWidth;
@@ -45,11 +39,8 @@ takePhotoButton.addEventListener('click', () => {
     // Parar o stream da câmera
     stream.getTracks().forEach(track => track.stop());
     video.srcObject = null;
-    video.style.display = 'none';
-    takePhotoButton.style.display = 'none';
-    openCameraButton.style.display = 'block';
-    toggleCameraButton.style.display = 'none';
-    viewPhotos.style.display = 'block';
+    camera.style.display = 'none';
+    canvas.style.display = 'block';
 });
 
 // Função para alternar a câmera
