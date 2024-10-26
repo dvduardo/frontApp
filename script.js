@@ -50,6 +50,8 @@ function closeAll() {
     preview.style.display = 'none';
     gallery.style.display = 'none';
     sendSuccess.style.display = 'none';
+    stream.getTracks().forEach(track => track.stop());
+    video.srcObject = null;
 }
 
 previewBack.addEventListener('click', closeAll);
@@ -73,9 +75,7 @@ takePhotoButton.addEventListener('click', () => {
     sendPhotoToServer(imageData);
 
     // Parar o stream da câmera
-    stream.getTracks().forEach(track => track.stop());
-    video.srcObject = null;
-    camera.style.display = 'none';
+    closeAll();
     preview.style.display = 'block';
 });
 
