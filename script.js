@@ -30,14 +30,16 @@ async function openGallery() {
     photos.innerHTML = '';
     gallery.style.display = 'block';
     for (const uuid of uuids) {
+        const div = document.createElement('div');
         const img = document.createElement('img');
         img.src = `https://mole-star-feline.ngrok-free.app/${uuid}`;
-        img.classList.add('gallery__photo');
+        div.classList.add('gallery__photo');
 
         img.addEventListener('click', () => {
             window.open(`https://mole-star-feline.ngrok-free.app/${uuid}`, '_blank');
         });
-        photos.appendChild(img);
+        div.appendChild(img);
+        photos.appendChild(div);
     }
 }
 

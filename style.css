@@ -125,6 +125,7 @@ body {
     padding: 1rem;
     border: none;
     cursor: pointer;
+    z-index: 3;
 }
 
 .camera__button svg {
@@ -196,10 +197,21 @@ body {
 }
 
 .gallery__photo {
+    position: relative;
+    display: inline-block;
     width: calc(50vw - 1rem);
     height: calc(50vw - 1rem);
     margin: 0 0.1rem;
     background-color: #333;
+    overflow: hidden;
+}
+
+.gallery__photo img {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @media screen and (min-width: 600px) {
