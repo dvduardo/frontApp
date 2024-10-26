@@ -11,6 +11,7 @@ const photos = document.getElementById('gallery-photos');
 const previewBack = document.getElementById('preview-back');
 const cameraBack = document.getElementById('camera-back');
 const galleryBack = document.getElementById('gallery-back');
+const previewClose = document.getElementById('preview-close');
 let stream;
 let isUsingFrontCamera = false;
 
@@ -52,6 +53,7 @@ function closeAll() {
 previewBack.addEventListener('click', closeAll);
 cameraBack.addEventListener('click', closeAll);
 galleryBack.addEventListener('click', closeAll);
+previewClose.addEventListener('click', closeAll);
 
 viewPhotosButton.addEventListener('click', wrapError(openGallery));
 openCameraButton.addEventListener('click', wrapError(openCamera));

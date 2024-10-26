@@ -170,6 +170,25 @@ body {
     object-fit: cover;
 }
 
+.preview__snackbar {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    width: calc(100% - 2rem);
+    background-color: #222;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.2rem 0.25rem 0 rgba(0, 0, 0, 0.4);
+    z-index: 3;
+}
+
+.preview__snackbar .button {
+    position: absolute;
+    right: 1rem;
+    margin-top: -0.25rem;
+}
+
 
 .gallery {
     position: fixed;
