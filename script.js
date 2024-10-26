@@ -6,34 +6,53 @@ const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const camera = document.getElementById('camera');
 const preview = document.getElementById('preview');
-
+const gallery = document.getElementById('gallery');
+const photos = document.getElementById('gallery-photos');
 const previewBack = document.getElementById('preview-back');
 const cameraBack = document.getElementById('camera-back');
+const galleryBack = document.getElementById('gallery-back');
 let stream;
 let isUsingFrontCamera = false;
 
 async function openCamera() {
-    try {
-        stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: isUsingFrontCamera ? 'user' : 'environment' }
+    stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: isUsingFrontCamera ? 'user' : 'environment' }
+    });
+    video.srcObject = stream;
+    camera.style.display = 'block';
+}
+
+async function openGallery() {
+    const response = await fetch('https://mole-star-feline.ngrok-free.app/fotos');
+    const res = await response.json();
+    const uuids = res.fotos;
+
+    photos.innerHTML = '';
+    gallery.style.display = 'block';
+    for (const uuid of uuids) {
+        const img = document.createElement('img');
+        img.src = `https://mole-star-feline.ngrok-free.app/${uuid}`;
+        img.classList.add('gallery__photo');
+
+        img.addEventListener('click', () => {
+            window.open(`https://mole-star-feline.ngrok-free.app/${uuid}`, '_blank');
         });
-        video.srcObject = stream;
-        camera.style.display = 'block';
-    } catch (error) {
-        console.error('Erro ao acessar a câmera: ', error);
+        photos.appendChild(img);
     }
 }
 
 function closeAll() {
     camera.style.display = 'none';
     preview.style.display = 'none';
+    gallery.style.display = 'none';
 }
 
 previewBack.addEventListener('click', closeAll);
 cameraBack.addEventListener('click', closeAll);
+galleryBack.addEventListener('click', closeAll);
 
-viewPhotosButton.addEventListener('click', () => window.location.href = './photo.html');
-openCameraButton.addEventListener('click', openCamera);
+viewPhotosButton.addEventListener('click', wrapError(openGallery));
+openCameraButton.addEventListener('click', wrapError(openCamera));
 
 takePhotoButton.addEventListener('click', () => {
     const context = canvas.getContext('2d');
@@ -97,4 +116,14 @@ function sendPhotoToServer(imageData) {
     .catch(error => {
         console.error('Erro ao enviar a foto:', error);
     });
+}
+
+function wrapError(fn) {
+    return async () => {
+        try {
+            await fn();
+        } catch (error) {
+            console.error('Erro:', error);
+        }
+    };
 }
