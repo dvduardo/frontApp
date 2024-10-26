@@ -1,4 +1,5 @@
-const openCameraButton = document.getElementById('openCamera');
+const openCameraButton = document.getElementById('open-camera');
+const viewPhotosButton = document.getElementById('view-photos');
 const takePhotoButton = document.getElementById('takePhoto');
 const toggleCameraButton = document.getElementById('toggleCamera');
 const video = document.getElementById('video');
@@ -22,6 +23,8 @@ async function openCamera() {
         console.error('Erro ao acessar a câmera: ', error);
     }
 }
+
+viewPhotosButton.addEventListener('click', () => window.location.href = './photo.html');
 
 // Evento para abrir a câmera
 openCameraButton.addEventListener('click', openCamera);

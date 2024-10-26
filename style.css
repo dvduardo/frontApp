@@ -1,41 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+}
 
 body {
-    font-family: 'Creepster', cursive;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #000;
-    background-image: url('img/halloween.jpeg');
-    background-size: 100px 100px;
-    background-repeat: repeat;
+    background-color: #111;
     color: #fff;
 }
 
-.container {
+.ribbon {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40vh;
+    background-color: #9B3922;
+    z-index: -1;
+}
+
+.panel {
+    background-color: #222;
+    margin: auto;
+    width: calc(100% - 1rem);
+    max-width: 42rem;
+    margin-top: 10vh;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.5), 0px 0.3rem 0.25rem 0 rgba(0, 0, 0, 0.5);
+}
+
+.panel__title, .panel__subtitle {
+    font-family: 'Creepster', sans-serif;
+}
+
+.panel__title {
+    font-size: 3rem;
+    color: #F2613F;
+}
+
+.panel__subtitle {
+    font-size: 2rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+.panel__ps {
+    font-size: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.5rem;
+}
+
+.panel__buttons {
+    display: block;
+    margin-top: 1rem;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #ff6347;
+    width: 100%;
 }
 
-h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: #ff6347;
-    text-shadow: 2px 2px 5px #6f28ca;
+.button {
+    background-color: #F2613F;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    box-shadow: 0 0.2rem 0.25rem 0 rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
 }
 
-h2 {
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.5;
+.button:hover {
+    box-shadow: 0 0.3rem 0.5rem 0 rgba(0, 0, 0, 0.6);
 }
 
-video {
+.button + .button {
+    margin-left: 1rem;
+}
+
+.button__icon {
+    width: 2rem;
+    height: 2rem;
+    display: block;
+    margin: auto;
+    margin-bottom: 0.5rem;
+}
+
+
+
+/* video {
     display: none;
     width: 100%;
     max-width: 300px;
@@ -58,4 +116,4 @@ button {
     margin-left: auto;
     margin-right: auto;
     transition: all 0.3s ease;
-}
+} */
